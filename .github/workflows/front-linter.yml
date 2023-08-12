@@ -1,0 +1,43 @@
+name: front-linter
+
+on:
+  push:
+    paths:
+      - web/**
+    branches:
+      - '*'
+  pull_request:
+    paths:
+      - web/**
+    branches:
+      - '*'
+jobs:
+  check-types:
+    name: Type checking for TypeScript
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web
+    steps:
+      - name: Check types
+        run: npm run check-types
+
+  prettier:
+    name: Formatting code with prettier
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web
+    steps:
+      - name: Check format
+        run: npm run check-format
+
+  linter:
+    name: Linting code with integrated ESLint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web
+    steps:
+      - name: Analyze code
+        run: npm run lint
