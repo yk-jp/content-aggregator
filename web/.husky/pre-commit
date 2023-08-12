@@ -1,10 +1,8 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+set -e
 
 echo '🧐🛠️ Styling and checking code before commiting for web repo...'
 cd web
 
 echo '🛠️ Commiting some auto fix for eslint errors and reformatting code...'
-npx lint-staged -v
-
-echo '😈 To bypass this check, please use `--no-verify` flag with `git commit` if needed.'
+npx lint-staged

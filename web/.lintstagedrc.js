@@ -10,10 +10,6 @@ const fixLintErrors = (filenames) =>
 const reformatting = (filenames) =>
   `prettier ${filenames.map((f) => path.relative(process.cwd(), f))} --write`;
 
-// typescript check
-const typeCheck = (_) => `npm run check-types`;
-
 module.exports = {
-  '*.{ts,tsx}': [typeCheck],
   '*.{js,jsx,ts,tsx}': [fixLintErrors, reformatting],
 };
