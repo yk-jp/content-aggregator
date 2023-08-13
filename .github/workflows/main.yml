@@ -1,4 +1,4 @@
-name: Cron and Push/PRs workflow for dev and master branches.
+name: All Workflows
 
 on:
   push:
