@@ -1,0 +1,23 @@
+name: Yaml Lint
+
+on:
+  workflow_call:
+  push:
+    paths:
+      - '**.yml'
+    branches-ignore: # remove redundancy for main.yml
+      - 'dev'
+      - 'master'
+  pull_request:
+    paths:
+      - '**.yml'
+
+jobs:
+  check-yml:
+    name: Linting yml files
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: yaml-lint
+        uses: ibiqlik/action-yamllint@v3

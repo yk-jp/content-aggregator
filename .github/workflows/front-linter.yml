@@ -1,0 +1,44 @@
+name: front-linter
+
+on:
+  workflow_call:
+  push:
+    paths:
+      - web/**
+    branches-ignore: # remove redundancy for main.yml
+      - 'dev'
+      - 'master'
+  pull_request:
+    paths:
+      - web/**
+    branches:
+      - '*'
+
+defaults:
+  run:
+    working-directory: ./web
+
+jobs:
+  check-types:
+    name: Type checking for TypeScript
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check types
+        run: npm run check-types
+
+  prettier:
+    name: Formatting code with prettier
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check format
+        run: npm run check-format
+
+  linter:
+    name: Linting code with integrated ESLint
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Analyze code
+        run: npm run lint
