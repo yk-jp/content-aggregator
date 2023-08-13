@@ -15,6 +15,7 @@ on:
 jobs:
   check-yml:
     name: Linting yml files
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

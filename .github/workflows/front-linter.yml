@@ -21,6 +21,7 @@ defaults:
 jobs:
   check-types:
     name: Type checking for TypeScript
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - name: Check types
@@ -28,6 +29,7 @@ jobs:
 
   prettier:
     name: Formatting code with prettier
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - name: Check format
@@ -35,6 +37,7 @@ jobs:
 
   linter:
     name: Linting code with integrated ESLint
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - name: Analyze code
