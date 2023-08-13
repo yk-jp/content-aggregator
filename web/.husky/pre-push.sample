@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+set -e
+
+echo '🧐🤡 Checking code before pushing commits to remote repo in dev or master branch...'
+cd web
+
+# Get the current branch name
+current_branch=$(git symbolic-ref --short HEAD)
+
+if [[ "$current_branch" == "dev" || "$current_branch" == "master" ]]; then
+        # prettier check
+        npm run check-format || (
+          echo 'Failed prettier check. 🤢🤮 Fix your ugly code.'
+          exit 1;
+        )
+
+        # typescript
+        npm run check-types || (
+          echo 'Failed Type check. 🤢🤮 Fix and clean your code properly.'
+          exit 1;
+        )
+
+        # lint
+        npm run lint || (
+           echo 'Failed ESLint Check. 🤢🤮 Follow up and fix all errors.'
+           exit 1;
+        )
+
+        echo 'Code looks good. 😁 Last check! Trying to build...'
+
+        # build
+        npm run build || (
+          echo 'Build failed. 🤢🤮 Look into the errors. Need to fix all of them before push. 😰'
+          exit 1;
+        )
+
+        echo '🤡🤡🤡 Congrats, all checks passed!. 🤡🤡🤡'
+
+else
+  echo 'You are on neither dev nor master. You can push your changes to remote repo. 😁'
+fi

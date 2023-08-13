@@ -8,15 +8,14 @@ on:
     branches-ignore: # remove redundancy for main.yml
       - 'dev'
       - 'master'
+      - 'ci-setup'
   pull_request:
     paths:
       - web/**
-    branches:
-      - '*'
 
 defaults:
   run:
-    working-directory: web
+    working-directory: ./web
 
 jobs:
   check-types:
@@ -24,6 +23,10 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: install npm dependencies
+        run: npm install
       - name: Check types
         run: npm run check-types
 
@@ -32,6 +35,10 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: install npm dependencies
+        run: npm install
       - name: Check format
         run: npm run check-format
 
@@ -40,5 +47,9 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: install npm dependencies
+        run: npm install
       - name: Analyze code
         run: npm run lint

@@ -10,9 +10,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "check-format": "prettier --check .",
+    "check-format": "npx prettier --check .",
     "check-types": "tsc --pretty --noEmit",
-    "reformat": "prettier --write .",
+    "reformat": "npx prettier --write .",
     "fix-lint": "next lint --fix",
     "postinstall": "cd .. && husky install web/.husky"
   },
