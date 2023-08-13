@@ -7,8 +7,10 @@ on:
       - dev
   schedule:
     - cron: '0 8 * * *' # every morning at 8 a.m.
+
 jobs:
   front-linter:
     uses: ./.github/workflows/front-linter.yml
+
   yml-linter:
     uses: ./.github/workflows/yml-linter.yml
