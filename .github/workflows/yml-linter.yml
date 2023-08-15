@@ -8,6 +8,7 @@ on:
     branches-ignore: # remove redundancy for main.yml
       - 'dev'
       - 'master'
+      - 'ci-setup'
   pull_request:
     paths:
       - '**.yml'
@@ -18,6 +19,7 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
