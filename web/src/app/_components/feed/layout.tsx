@@ -1,41 +1,36 @@
 import Image, { StaticImageData } from 'next/image';
 
+import imgNotAvailable from '../../_public/img/img_not_available.webp';
+import { useState } from 'react';
+
 interface IProps {
   imgSample: StaticImageData;
+  feedDescription: string;
 }
 
 export default function Feed(props: IProps) {
-  const { imgSample } = props;
-  const width = 40;
-  const height = 40;
+  const { imgSample, feedDescription } = props;
+
+  const [imgSrc, setImgSrc] = useState<StaticImageData | string>('/ste');
+
+  const replaceWithErrorImg = () => {
+    setImgSrc(imgNotAvailable);
+  };
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg space-y-4">
+    <div className="w-11/12 max-w-xs max-h-72 rounded overflow-hidden shadow-lg">
       <Image
-        width={width}
-        height={height}
-        className="w-full"
-        src={imgSample}
-        alt="Sunset in the mountains"
+        className="w-full max-w-xs max-h-36"
+        src={imgSrc}
+        width={300}
+        height={300}
+        onError={replaceWithErrorImg}
+        alt="Feed"
       />
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-        <p className="text-gray-700 text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
+      <div className="py-2 w-fit h-fit flex items-center">
+        <p className="md:text-xs lg:text-base font-bold px-4 py-2 mb-2 text-center min-h-fit">
+          {feedDescription}
         </p>
-      </div>
-      <div className="px-6 pt-4 pb-2">
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          #photography
-        </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          #travel
-        </span>
-        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-          #winter
-        </span>
       </div>
     </div>
   );
