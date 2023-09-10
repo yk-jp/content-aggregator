@@ -14,5 +14,5 @@ const reformatting = (filenames) =>
 // `prettier ${filenames.map((f) => path.relative(process.cwd(), f))} --write`;
 
 module.exports = {
-  '*.{js,jsx,ts,tsx,json}': [fixLintErrors, reformatting],
+  '*.{js,jsx,ts,tsx}': [fixLintErrors, reformatting],
 };
